@@ -29,6 +29,12 @@ Same applies for "spent commitment", which refers to a commitment in the Merkle 
 
 ## Building the project:
 
+### Set the appropriate environment variables
+
+```bash
+. ./setup_env
+```
+
 ### Build libsnark gadget to generate verificaction key and proving key
 
 1. Get dependencies:

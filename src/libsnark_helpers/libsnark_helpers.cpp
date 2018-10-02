@@ -64,6 +64,17 @@ std::string outputPointG2AffineAsHex(libff::alt_bn128_G2 _p) {
         HexStringFromLibsnarkBigint(aff.Y.c0.as_bigint()) + "\"]";
 }
 
+boost::filesystem::path getPathToSetupDir() {
+    char* pathToSetupFolder;
+    pathToSetupFolder = std::getenv("SNARK_TRUSTED_SETUP_DIR");
+    if (pathToSetupFolder == NULL) {
+        // Fallback destination if the SNARK_TRUSTED_SETUP_DIR env var is not set
+        pathToSetupFolder = "../zksnark_trusted_setup";
+    }
+    boost::filesystem::path setup_dir(pathToSetupFolder);
+    return setup_dir;
+}
+
 // Generate keypair (proving key, verif key) from constraints
 r1cs_ppzksnark_keypair<libff::alt_bn128_pp> generateKeypair(const r1cs_ppzksnark_constraint_system<libff::alt_bn128_pp> &cs){
   // From r1cs_ppzksnark.hpp

@@ -2,6 +2,7 @@
 #define __ZKSNARK_PROVER_TCC__
 
 #include <libsnark_helpers/libsnark_helpers.hpp>
+#include <libsnark/gadgetlib1/constraint_profiling.hpp>
 #include "computation.hpp"
 
 using namespace libsnark;
@@ -80,6 +81,9 @@ Miximus<FieldT, HashT>::Miximus() {
     path_variable->generate_r1cs_constraints();
     check_membership->generate_r1cs_constraints();
     leaf_digest->generate_r1cs_constraints();
+
+    std::cout << " ////--------- Constraints profiling ---------//// " << std::endl;
+    PRINT_CONSTRAINT_PROFILING();
 }
 
 template<typename FieldT, typename HashT>
